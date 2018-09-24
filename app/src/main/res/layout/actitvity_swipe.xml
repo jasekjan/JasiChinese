@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_height="429dp"
+        android:layout_width="match_parent"
+        android:layout_weight="0.90"
+        android:layout_alignParentLeft="true">
+        <android.support.v4.view.PagerTabStrip
+            android:id="@+id/pager_tab_strip_swipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:textColor="#aaa" />
+    </android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_weight="0.1">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="0"
+            android:ems="10"
+            android:id="@+id/editText_set_position"
+            android:layout_weight="1.25"
+            android:inputType="number"
+            android:gravity="center_vertical|center_horizontal" />
+
+        <Button
+            android:text="@string/button_select_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_select_position"
+            android:onClick="SwipeSetPosition"
+            android:layout_weight="0.20"
+            android:elevation="1dp" />
+    </LinearLayout>
+
+</LinearLayout>

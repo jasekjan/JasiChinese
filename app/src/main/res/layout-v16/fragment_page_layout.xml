@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.development.honza.jasichinese.SwipeActivity"
+
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="143dp"
+        android:layout_weight="0.5">
+
+        <TextView
+            android:id="@+id/tv_fragmentDetailInChinese"
+            android:layout_width="match_parent"
+            android:layout_height="252dp"
+            android:fontFamily="serif"
+            android:gravity="fill_vertical|fill_horizontal"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/imageButton_play"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:layout_gravity="bottom|end"
+            android:background="@android:color/holo_orange_light"
+            android:contentDescription="@string/button_play_description"
+            android:src="@android:drawable/ic_media_play" />
+    </FrameLayout>
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_fragmentDetailInPinyin"
+        android:layout_weight="0.25"
+        android:textAlignment="center"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@android:color/darker_gray"
+        android:clickable="true"
+        android:textSize="24sp"
+        android:onClick="tvSwipePinyinToggleVisibility"
+        android:textColor="@android:color/transparent"
+        android:focusable="true" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_fragmentDetailInCzech"
+        android:layout_weight="0.25"
+        android:textAlignment="center"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="#8aa2a2a2"
+        android:clickable="true"
+        android:textSize="24sp"
+        android:onClick="tvSwipeCzechToggleVisibility"
+        android:textColor="@android:color/transparent"
+        android:focusable="true" />
+
+</LinearLayout>

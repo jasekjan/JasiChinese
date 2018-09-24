@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:isScrollContainer="true"
+    android:orientation="vertical"
+    android:scrollbars="vertical"
+    android:verticalScrollbarPosition="right">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:elevation="0dp"
+                    android:isScrollContainer="true"
+                    android:orientation="vertical"
+                    android:scrollbars="vertical"
+                    android:verticalScrollbarPosition="right">
+
+                    <TextView
+                        android:id="@+id/textView_show_Chinese"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/textView_show_chinese"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/editText_show_chinese"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textView_show_pinyin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="@string/textView_show_pinyin"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/editText_show_pinyin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textView_show_czech"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="@string/textView_show_czech"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/editText_show_czech"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textView_show_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="1dp"
+                        android:paddingTop="5dp"
+                        android:text="@string/textView_show_category"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/editText_show_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textView_show_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/textView_show_id"
+                        android:textSize="8sp"
+                        android:visibility="invisible" />
+
+                    <EditText
+                        android:id="@+id/editText_show_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:ems="10"
+                        android:textAlignment="textEnd"
+                        android:textSize="10sp"
+                        android:visibility="invisible" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageButton
+                            android:id="@+id/imageButton_detail_play"
+                            android:layout_width="85dp"
+                            android:layout_height="85dp"
+                            android:layout_gravity="center_vertical|end"
+                            android:background="@android:color/holo_orange_light"
+                            android:theme="@android:style/MediaButton.Play" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="match_parent"
+            android:layout_height="108dp"
+            android:layout_alignParentBottom="false"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="saveWord"
+            android:text="@string/button_save"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.development.honza.jasichinese.SearchActivity">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/editText_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="left"
+            android:inputType="textPersonName" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="453dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            android:paddingTop="15dp"
+            app:layout_anchor="@id/editText_search"
+            app:layout_anchorGravity="bottom|center_horizontal"
+            tools:layout_editor_absoluteY="-36dp">
+
+            <ListView
+                android:id="@+id/lv_searchList"
+                android:layout_width="match_parent"
+                android:layout_height="504dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginTop="15dp" />
+        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
+
+</android.support.constraint.ConstraintLayout>

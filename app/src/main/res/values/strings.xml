@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Čínština od Jašiho</string>
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content"></string>
+    <string name="download">Stáhnout</string>
+    <string name="download_button">Procházet</string>
+    <string name="button_add">Přidej</string>
+    <string name="button_edit">Uprav</string>
+    <string name="button_del">Smaž</string>
+    <string name="textView_prompt_description">Zadejte počáteční pozici</string>
+    <string name="button_select_position">Vybrat pozici</string>
+    <string name="prochazet">Procházet vše</string>
+    <string name="button_prochazet_category">Flashcards</string>
+    <string name="menu_word_item_add">Přidat</string>
+    <string name="textView_show_czech">Česky</string>
+    <string name="textView_show_pinyin">Pinyin</string>
+    <string name="textView_show_chinese">Znaky</string>
+    <string name="menu_item_del">Smaž</string>
+    <string name="menu_item_edit">Uprav</string>
+    <string name="button_save">Uložit</string>
+    <string name="button_cancel">Zrušit</string>
+    <string name="textView_show_category">Kategorie</string>
+    <string name="textView_show_id">ID</string>
+    <string name="sync_button">Synchronizovat</string>
+    <string name="title_activity_sync">SyncActivity</string>
+    <string name="btn_do">Nahrát slovíčka</string>
+    <string name="start_button_category">Seznam slovíček</string>
+    <string name="search_button">Vyhledávání</string>
+    <string name="button_play_description">Play</string>
+    <string name="tv_detInChinese">tv_detInChinese</string>
+    <string name="tv_detInPinyin">tv_detInPinyin</string>
+    <string name="tv_detInCzech">tv_detInCzech</string>
+    <string name="button_browse">Procházet</string>
+</resources>
