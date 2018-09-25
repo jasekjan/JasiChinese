@@ -109,4 +109,9 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="tv_input">Zadejte text</string>
+    <string name="btn_settings">Nastavení</string>
+    <string name="app_bar_switch">Náhodně</string>
+    <string name="action_search">Hledat</string>
+    <string name="action_sync">Synchronizovat</string>
+    <string name="action_settings">Nastavení</string>
 </resources>

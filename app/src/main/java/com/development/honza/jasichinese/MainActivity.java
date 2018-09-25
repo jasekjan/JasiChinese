@@ -5,9 +5,14 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.development.honza.jasichinese.comm.DownloadFile;
@@ -38,10 +43,11 @@ public class MainActivity extends AppCompatActivity {
         CharactersOpenHelper db = new CharactersOpenHelper(getApplicationContext());
         db.deleteAll();
         */
+        setContentView(R.layout.activity_main);
+
 
         FlashcardRead fr = new FlashcardRead();
         fr.testTextToSpeech(getApplicationContext(), "");
-        setContentView(R.layout.activity_main);
     }
 
     @Override
@@ -51,6 +57,37 @@ public class MainActivity extends AppCompatActivity {
         populateSpinner();
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_settings, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // action with ID action_refresh was selected
+            case R.id.action_settings:
+                /*Toast.makeText(this, "Settings selected", Toast.LENGTH_SHORT)
+                        .show();*/
+                showSettings(mContentView);
+                break;
+            case R.id.action_sync :
+                syncWords(mContentView);
+                break;
+            case R.id.action_search :
+                searchActivity(mContentView);
+                break;
+            default:
+                break;
+        }
+
+        return true;
+    }
+
+
 
     public void showWordsCategory(View view) {
         Intent i = new Intent(MainActivity.this, WordsListActivity.class);

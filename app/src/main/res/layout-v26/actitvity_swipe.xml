@@ -8,7 +8,8 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="429dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_select_position"
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.v4.view.PagerTabStrip
@@ -21,30 +22,27 @@
             android:textColor="#aaa" />
     </android.support.v4.view.ViewPager>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:orientation="horizontal"
+    <EditText
+        android:id="@+id/editText_set_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center_vertical|center_horizontal"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:text="0"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
+        app:layout_constraintLeft_toLeftOf="parent" />
 
-        <EditText
-            android:id="@+id/editText_set_position"
-            android:layout_width="97dp"
-            android:layout_height="match_parent"
-            android:ems="10"
-            android:gravity="center_vertical|center_horizontal"
-            android:inputType="number"
-            android:text="0"
-            android:importantForAutofill="no" />
-
-        <Button
-            android:id="@+id/button_select_position"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="1dp"
-            android:onClick="SwipeSetPosition"
-            android:text="@string/button_select_position" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/button_select_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        android:gravity="center_horizontal|center"
+        android:onClick="SwipeSetPosition"
+        android:text="@string/button_select_position"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

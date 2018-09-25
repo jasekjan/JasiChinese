@@ -84,10 +84,13 @@ public class PageFragment extends Fragment {
                 switch (flashcard.toLowerCase()) {
                     case "znaky" :
                         fr.testTextToSpeech(getContext(), inChinese);
+                        break;
                     case "čeština" :
                         fr.testTextToSpeech(getContext(), inPinyin);
+                        break;
                     case "pinyin" :
                         fr.testTextToSpeech(getContext(), inPinyin);
+                        break;
                 }
             }
         });
