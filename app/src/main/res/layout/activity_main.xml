@@ -12,6 +12,13 @@
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showSettings"
+        android:text="Button" />
+
     <LinearLayout
         android:id="@+id/fullscreen_content_controls"
         style="?metaButtonBarStyle"

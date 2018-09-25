@@ -37,7 +37,7 @@ public class SwipeActivity extends FragmentActivity {
 
         String category = getIntent().getStringExtra("category");
         String poradi = getIntent().getStringExtra("poradi");
-        String flashCard = getIntent().getStringExtra("flashcard");
+        final String flashCard = getIntent().getStringExtra("flashcard");
         charactersArrayList = db.getAllLCharacters(category, poradi, flashCard);
 
         setContentView(R.layout.actitvity_swipe);
@@ -54,6 +54,7 @@ public class SwipeActivity extends FragmentActivity {
                 bundle.putString("inChinese", characters.getInChinese());
                 bundle.putString("inCzech", characters.getInCzech());
                 bundle.putString("inPinyin", characters.getInPinyin());
+                bundle.putString("flashcard", flashCard);
                 fragment.setArguments(bundle);
 
                 EditText et = (EditText)findViewById(R.id.editText_set_position);

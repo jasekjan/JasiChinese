@@ -14,6 +14,8 @@ import com.development.honza.jasichinese.comm.DownloadFile;
 import com.development.honza.jasichinese.comm.ImportData;
 import com.development.honza.jasichinese.db.CharactersOpenHelper;
 import com.development.honza.jasichinese.db.FlashcardRead;
+import com.development.honza.jasichinese.db.Settings;
+import com.development.honza.jasichinese.db.SettingsOpenHelper;
 import com.development.honza.jasichinese.db.SyncActivity;
 
 import java.util.ArrayList;
@@ -72,6 +74,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public  void showSettings(View view) {
+        Intent i = new Intent(MainActivity.this, SettingsActivity.class);
+
+        startActivity(i);
+    }
+
     public void searchActivity(View view) {
         Intent i = new Intent(MainActivity.this, SearchActivity.class);
         startActivity(i);
@@ -111,9 +119,15 @@ public class MainActivity extends AppCompatActivity {
         String category;
         //category = String.valueOf((Spinner)findViewById(R.id.spinner_category).getId()));
         Intent i = new Intent(MainActivity.this, SyncActivity.class);
-        i.putExtra("fileurl", "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8d-0ZEZiu17iR-iBfa5OP0BOaN2N9x3y0aT8o2x78wOT_P2ypdlX3aExqNByRsRv1aP08UpUZHBYj/pub?output=csv&ndplr=1");
-        startActivity(i);
+        SettingsOpenHelper db = new SettingsOpenHelper(MainActivity.this);
+        Settings settings = db.findSettingsById(1);
 
+        if (settings == null || settings.getPath() == null || settings.getPath().equals("")) {
+            Toast.makeText(getApplicationContext(), "Nejdřív proveďte nastavení", Toast.LENGTH_LONG).show();
+        } else {
+            i.putExtra("fileurl", settings.getPath());
+            startActivity(i);
+        }
         populateSpinner();
     }
 }

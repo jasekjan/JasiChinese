@@ -47,7 +47,7 @@ public class WordsListActivity extends Activity {
         CharactersOpenHelper db = new CharactersOpenHelper(this);
 
         charactersArrayList = db.getAllLCharacters(category, poradi, "Znaky");
-        Toast.makeText(getApplicationContext(), "Kokotina", Toast.LENGTH_LONG);
+
         final SimpleAdapter simpleAdapter = new SimpleAdapter(
                 this, list,
                 R.layout.row_layout,

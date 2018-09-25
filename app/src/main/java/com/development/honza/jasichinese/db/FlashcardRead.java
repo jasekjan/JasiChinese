@@ -5,6 +5,7 @@ import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.TextView;
 
+import com.development.honza.jasichinese.MainActivity;
 import com.development.honza.jasichinese.PageFragment;
 
 import java.util.HashMap;
@@ -28,6 +29,10 @@ public class FlashcardRead {
         final int mode = TextToSpeech.QUEUE_FLUSH;
         final HashMap<String, String> hashMap = new HashMap<String, String>();
 
+        SettingsOpenHelper db = new SettingsOpenHelper(context);
+        final Settings setting = db.findSettingsById(1);
+
+
         tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
 
             @Override
@@ -35,7 +40,11 @@ public class FlashcardRead {
                 if (status != TextToSpeech.ERROR) {
 
                     tts.setLanguage(Locale.CHINESE);
-                    tts.setSpeechRate(0.43f);
+                    if (setting == null || setting.getSpeed() == 0) {
+                        tts.setSpeechRate(0.43f);
+                    } else {
+                        tts.setSpeechRate(setting.getSpeed());
+                    }
                     tts.speak(toSpeak, mode, hashMap);
                 }
             }

@@ -54,16 +54,6 @@ public class SyncActivity extends AppCompatActivity {
         return cm.getActiveNetworkInfo() != null;
     }
 
-    public void onBrowse(View view) {
-        Intent chooseFile;
-        Intent intent;
-        chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
-        chooseFile.addCategory(Intent.CATEGORY_OPENABLE);
-        chooseFile.setType("text/plain");
-        intent = Intent.createChooser(chooseFile, "Vyberte soubor");
-        startActivityForResult(intent, ACTIVITY_CHOOSE_FILE);
-    }
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_OK) return;
         String path     = "";

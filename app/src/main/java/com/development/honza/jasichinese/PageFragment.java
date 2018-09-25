@@ -24,6 +24,8 @@ public class PageFragment extends Fragment {
     private int transparentColor = Color.TRANSPARENT;
     private int blackColor = Color.BLACK;
 
+    private String flashcard;
+
     public PageFragment() {
         // Required empty public constructor
     }
@@ -39,8 +41,11 @@ public class PageFragment extends Fragment {
         imageButton = (ImageButton)view.findViewById(R.id.imageButton_play);
         Bundle bundle = getArguments();
         final String inChinese = bundle.getString("inChinese");
-        String inCzech = bundle.getString("inCzech");
-        String inPinyin = bundle.getString("inPinyin");
+        final String inCzech = bundle.getString("inCzech");
+        final String inPinyin = bundle.getString("inPinyin");
+
+        flashcard = bundle.getString("flashcard");
+
         tv_inChinese.setText(inChinese);
         tv_inPinyin.setText(inPinyin);
         tv_inCzech.setText(inCzech);
@@ -76,7 +81,14 @@ public class PageFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FlashcardRead fr = new FlashcardRead();
-                fr.testTextToSpeech(getContext(), inChinese);
+                switch (flashcard.toLowerCase()) {
+                    case "znaky" :
+                        fr.testTextToSpeech(getContext(), inChinese);
+                    case "čeština" :
+                        fr.testTextToSpeech(getContext(), inPinyin);
+                    case "pinyin" :
+                        fr.testTextToSpeech(getContext(), inPinyin);
+                }
             }
         });
         return view;
