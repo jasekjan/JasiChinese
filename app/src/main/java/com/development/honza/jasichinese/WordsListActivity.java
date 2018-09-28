@@ -3,25 +3,26 @@ package com.development.honza.jasichinese;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Spinner;
 
-import com.development.honza.jasichinese.db.Characters;
-import com.development.honza.jasichinese.db.CharactersOpenHelper;
+import com.development.honza.jasichinese.db.Words;
+import com.development.honza.jasichinese.db.WordsOpenHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import android.speech.tts.TextToSpeech;
-import android.speech.tts.TextToSpeech.OnInitListener;
-import android.widget.Toast;
+import android.widget.Switch;
 
 public class WordsListActivity extends Activity {
 
@@ -30,30 +31,57 @@ public class WordsListActivity extends Activity {
     static int WORD_SAVED_OK = 1;
     ListView listView;
     static final ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
-
+    private EditText editText;
+    private Switch aSwitch;
+    private String categorySql;
+    private ArrayList<Words> words;
+    private WordsOpenHelper db;
+    private String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_words_list);
-        String category = getIntent().getStringExtra("category");
+
+        category = getIntent().getStringExtra("category");
+        if (category.equals("vše")) { category = "all"; };
+
         String poradi = getIntent().getStringExtra("poradi");
 
-        final ArrayList<Characters> charactersArrayList;
+        registerForContextMenu((ListView)findViewById(R.id.lv_words));
+        listView = (ListView) findViewById(R.id.lv_words);
+        aSwitch = (Switch) findViewById(R.id.switch_category);
 
-        registerForContextMenu((ListView)findViewById(R.id.listView_words));
-        listView = (ListView) findViewById(R.id.listView_words);
+        db = new WordsOpenHelper(this);
+        words = db.getAllLCharacters("all", poradi, "Znaky");
 
-        CharactersOpenHelper db = new CharactersOpenHelper(this);
-
-        charactersArrayList = db.getAllLCharacters(category, poradi, "Znaky");
+        if (aSwitch.isChecked()) {
+            categorySql = category;
+        } else {
+            categorySql = "all";
+        }
 
         final SimpleAdapter simpleAdapter = new SimpleAdapter(
                 this, list,
                 R.layout.row_layout,
-                new String[]{"inCzech", "inPinyin", "inChinese", "id"},
-                new int[]{R.id.tv_inCzech, R.id.tv_inPinyin, R.id.tv_inChinese, R.id.tv_hiddenId}
+                new String[]{"myLang", "myReading", "myForeign", "id"},
+                new int[]{R.id.tv_myLang, R.id.tv_myReading, R.id.tv_myForeign, R.id.tv_hiddenId}
         );
+
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                        categorySql = category;
+                } else {
+                       categorySql = "all";
+                }
+
+                words = db.getAllLCharactersByAny(editText.getText().toString(), categorySql);
+
+                populateList(words);
+                listView.setAdapter(simpleAdapter);
+            }
+        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -65,7 +93,33 @@ public class WordsListActivity extends Activity {
             }
         });
 
-        populateList(charactersArrayList);
+        editText = (EditText) findViewById(R.id.et_search);
+
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().length() > 0) {
+                    words = db.getAllLCharactersByAny(s.toString(), categorySql);
+
+                    populateList(words);
+                    listView.setAdapter(simpleAdapter);
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                // TODO Auto-generated method stub
+            }
+        });
+
+        populateList(words);
         listView.setAdapter(simpleAdapter);
 
     }
@@ -88,13 +142,13 @@ public class WordsListActivity extends Activity {
         }
     }
 
-    private void populateList(ArrayList<Characters> al) {
+    private void populateList(ArrayList<Words> al) {
         list.clear();
         for (int i = 0; i < al.size(); i++) {
             HashMap<String, String> temp = new HashMap<String, String>();
-            temp.put("inCzech", al.get(i).getInCzech());
-            temp.put("inPinyin", al.get(i).getInPinyin());
-            temp.put("inChinese", al.get(i).getInChinese());
+            temp.put("myLang", al.get(i).getmyLang());
+            temp.put("myReading", al.get(i).getmyReading());
+            temp.put("myForeign", al.get(i).getmyForeign());
             temp.put("id", String.valueOf(al.get(i).getId()));
             list.add(temp);
         }
@@ -112,7 +166,7 @@ public class WordsListActivity extends Activity {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        listView = (ListView) findViewById(R.id.listView_words);
+        listView = (ListView) findViewById(R.id.lv_words);
         int position;
 
         AdapterView.AdapterContextMenuInfo ami = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
@@ -148,7 +202,7 @@ public class WordsListActivity extends Activity {
 
     protected boolean deleteWord(Integer id) {
         boolean ret;
-        CharactersOpenHelper db = new CharactersOpenHelper(getApplicationContext());
+        WordsOpenHelper db = new WordsOpenHelper(getApplicationContext());
         ret = db.deleteRecord(id);
         finish();
         startActivity(getIntent());

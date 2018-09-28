@@ -114,4 +114,9 @@
     <string name="action_search">Hledat</string>
     <string name="action_sync">Synchronizovat</string>
     <string name="action_settings">Nastavení</string>
+    <string name="switch_text_off">Vše</string>
+    <string name="switch_text_on">Kategorie</string>
+    <string name="test">Procvičovat</string>
+    <string name="poradi">Pořadí</string>
+    <string name="category">Kategorie</string>
 </resources>

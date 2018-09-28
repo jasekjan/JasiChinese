@@ -16,11 +16,11 @@ import com.development.honza.jasichinese.db.FlashcardRead;
  * A simple {@link Fragment} subclass.
  */
 public class PageFragment extends Fragment {
-    TextView tv_inChinese, tv_inPinyin, tv_inCzech;
+    TextView tv_myForeign, tv_myReading, tv_myLang;
     ImageButton imageButton;
 
-    private int currentCzech;
-    private int currentPinyin;
+    private int currentMyLang;
+    private int currentMyReading;
     private int transparentColor = Color.TRANSPARENT;
     private int blackColor = Color.BLACK;
 
@@ -35,43 +35,44 @@ public class PageFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_page_layout, container, false);
-        tv_inChinese = (TextView)view.findViewById(R.id.tv_fragmentDetailInChinese);
-        tv_inPinyin = (TextView)view.findViewById(R.id.tv_fragmentDetailInPinyin);
-        tv_inCzech = (TextView)view.findViewById(R.id.tv_fragmentDetailInCzech);
-        imageButton = (ImageButton)view.findViewById(R.id.imageButton_play);
+        tv_myForeign = (TextView)view.findViewById(R.id.tv_fragmentDetailShow);
+        tv_myReading = (TextView)view.findViewById(R.id.tv_fragmentDetailReading);
+        tv_myLang = (TextView)view.findViewById(R.id.tv_fragmentDetailMyLanguage);
+        imageButton = (ImageButton)view.findViewById(R.id.ib_fragment_play);
+
         Bundle bundle = getArguments();
-        final String inChinese = bundle.getString("inChinese");
-        final String inCzech = bundle.getString("inCzech");
-        final String inPinyin = bundle.getString("inPinyin");
+        final String myForeign = bundle.getString("myForeign");
+        final String myLang = bundle.getString("myLang");
+        final String myReading = bundle.getString("myReading");
 
         flashcard = bundle.getString("flashcard");
 
-        tv_inChinese.setText(inChinese);
-        tv_inPinyin.setText(inPinyin);
-        tv_inCzech.setText(inCzech);
+        tv_myForeign.setText(myForeign);
+        tv_myReading.setText(myReading);
+        tv_myLang.setText(myLang);
 
-        tv_inPinyin.setOnClickListener(new View.OnClickListener() {
+        tv_myReading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentPinyin = tv_inPinyin.getCurrentTextColor();
+                currentMyReading = tv_myReading.getCurrentTextColor();
 
-                if (currentPinyin == transparentColor) {
-                    tv_inPinyin.setTextColor(blackColor);
+                if (currentMyReading == transparentColor) {
+                    tv_myReading.setTextColor(blackColor);
                 } else {
-                    tv_inPinyin.setTextColor(transparentColor);
+                    tv_myReading.setTextColor(transparentColor);
                 }
             }
         });
 
-        tv_inCzech.setOnClickListener(new View.OnClickListener() {
+        tv_myLang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentCzech = tv_inCzech.getCurrentTextColor();
+                currentMyLang = tv_myLang.getCurrentTextColor();
 
-                if (currentCzech == transparentColor) {
-                    tv_inCzech.setTextColor(blackColor);
+                if (currentMyLang == transparentColor) {
+                    tv_myLang.setTextColor(blackColor);
                 } else {
-                    tv_inCzech.setTextColor(transparentColor);
+                    tv_myLang.setTextColor(transparentColor);
                 }
             }
         });
@@ -83,13 +84,13 @@ public class PageFragment extends Fragment {
                 FlashcardRead fr = new FlashcardRead();
                 switch (flashcard.toLowerCase()) {
                     case "znaky" :
-                        fr.testTextToSpeech(getContext(), inChinese);
+                        fr.testTextToSpeech(getContext(), myForeign);
                         break;
                     case "čeština" :
-                        fr.testTextToSpeech(getContext(), inPinyin);
+                        fr.testTextToSpeech(getContext(), myReading);
                         break;
                     case "pinyin" :
-                        fr.testTextToSpeech(getContext(), inPinyin);
+                        fr.testTextToSpeech(getContext(), myReading);
                         break;
                 }
             }

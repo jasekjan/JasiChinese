@@ -40,11 +40,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.development.honza.jasichinese.MainActivity" />
         </activity>
-        <activity android:name=".SearchActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.development.honza.jasichinese.MainActivity" />
-        </activity>
         <activity
             android:name=".db.SyncActivity"
             android:label="@string/title_activity_sync"

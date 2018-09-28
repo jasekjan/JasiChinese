@@ -5,19 +5,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by Honza on 7. 3. 2018.
  */
 
-public class CharactersAdapter extends BaseAdapter {
+public class WordsAdapter extends BaseAdapter {
     Context context;
-    List<Characters> characters;
+    List<Words> words;
 
-    public CharactersAdapter() {
+    public WordsAdapter() {
     }
 
     public Context getContext() {
@@ -28,17 +26,17 @@ public class CharactersAdapter extends BaseAdapter {
         this.context = context;
     }
 
-    public List<Characters> getCharacters() {
-        return characters;
+    public List<Words> getWords() {
+        return words;
     }
 
-    public void setCharacters(List<Characters> characters) {
-        this.characters = characters;
+    public void setWords(List<Words> words) {
+        this.words = words;
     }
 
     @Override
     public int getCount() {
-        return characters.size();
+        return words.size();
     }
 
     @Override

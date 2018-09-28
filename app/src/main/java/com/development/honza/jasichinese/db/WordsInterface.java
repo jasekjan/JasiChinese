@@ -4,9 +4,9 @@ package com.development.honza.jasichinese.db;
  * Created by Honza on 22. 4. 2018.
  */
 
-interface CharactersInterface {
+interface WordsInterface {
     @Override
     String toString();
 
-    boolean equals(Characters chars);
+    boolean equals(Words words);
 }

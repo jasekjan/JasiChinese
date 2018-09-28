@@ -14,114 +14,128 @@
          android:fitsSystemWindows. -->
 
     <LinearLayout
-        android:id="@+id/fullscreen_content_controls"
-        style="?metaButtonBarStyle"
+        android:id="@+id/layout_main_v1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom|center_horizontal"
-        android:background="@color/black_overlay"
-        android:orientation="vertical"
-        tools:ignore="UselessParent">
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/layout_main_v1"
+            android:id="@+id/layout_main_v_h_3"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
-            <LinearLayout
-                android:id="@+id/layout_main_v_h_2"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_test"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2"
+                android:background="@android:color/holo_orange_light"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:text="@string/test"
+                android:textSize="24sp" />
 
-                <Button
-                    android:id="@+id/start_button_category"
-                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    android:background="@color/black_overlay"
-                    android:onClick="showWordsCategory"
-                    android:text="@string/start_button_category"
-                    android:textColor="@android:color/darker_gray"
-                    tools:text="@string/start_button_category" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout_main_v_h_3"
-                android:layout_width="match_parent"
+            <Spinner
+                android:id="@+id/spinner_flashcards"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_gravity="center_vertical"
+                android:layout_weight="3"
+                android:background="@android:color/holo_orange_dark"
+                android:gravity="center_vertical|center_horizontal"
+                android:hapticFeedbackEnabled="true"
+                android:spinnerMode="dialog" />
 
-                <Button
-                    android:id="@+id/button_prochazet_category"
-                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginRight="1dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    android:background="@color/black_overlay"
-                    android:elevation="0dp"
-                    android:onClick="showSwipeActivityCategory"
-                    android:text="@string/button_prochazet_category"
-                    android:textColor="@android:color/darker_gray"
-                    tools:text="@string/button_prochazet_category" />
+        </LinearLayout>
 
-                <Spinner
-                    android:id="@+id/spinner_flashcards"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    android:background="@android:color/darker_gray"
-                    android:hapticFeedbackEnabled="true"
-                    android:spinnerMode="dialog" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
 
-            </LinearLayout>
+            <TextView
+                android:id="@+id/tv_poradi"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2"
+                android:background="@android:color/holo_orange_light"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:text="@string/poradi"
+                android:textSize="24sp" />
 
             <Spinner
                 android:id="@+id/spinner_poradi"
-                android:layout_width="match_parent"
-                android:layout_height="51dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_weight="3"
                 android:background="@android:color/holo_orange_dark"
+                android:gravity="center_vertical|center_horizontal"
                 android:scrollbarSize="30dp"
                 android:spinnerMode="dialog" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/tv_category"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2"
+                android:background="@android:color/holo_orange_light"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:inputType="textPersonName"
+                android:paddingLeft="15dp"
+                android:text="@string/category"
+                android:textSize="24sp" />
 
             <Spinner
                 android:id="@+id/spinner_category"
-                android:layout_width="match_parent"
-                android:layout_height="51dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_weight="0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_weight="3"
                 android:background="@android:color/holo_orange_dark"
                 android:scrollbarSize="30dp"
                 android:spinnerMode="dialog"
                 android:textAlignment="center" />
-
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_browse_category"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:background="@color/black_overlay"
+            android:elevation="0dp"
+            android:onClick="showSwipeActivityCategory"
+            android:text="@string/button_prochazet_category"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="24sp"
+            tools:text="@string/button_prochazet_category" />
 
     </LinearLayout>
 

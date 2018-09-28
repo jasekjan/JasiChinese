@@ -13,7 +13,7 @@
         android:layout_weight="0.5">
 
         <TextView
-            android:id="@+id/tv_fragmentDetailInChinese"
+            android:id="@+id/tv_fragmentDetailShow"
             android:layout_width="match_parent"
             android:layout_height="252dp"
             android:fontFamily="serif"
@@ -24,7 +24,7 @@
             android:textStyle="bold" />
 
         <ImageButton
-            android:id="@+id/imageButton_play"
+            android:id="@+id/ib_fragment_play"
             android:layout_width="85dp"
             android:layout_height="85dp"
             android:layout_gravity="bottom|end"
@@ -34,32 +34,30 @@
     </FrameLayout>
 
     <TextView
-        android:text="TextView"
+        android:id="@+id/tv_fragmentDetailReading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_fragmentDetailInPinyin"
         android:layout_weight="0.25"
-        android:textAlignment="center"
-        android:gravity="center_vertical|center_horizontal"
         android:background="@android:color/darker_gray"
         android:clickable="true"
-        android:textSize="24sp"
-        android:onClick="tvSwipePinyinToggleVisibility"
+        android:focusable="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="TextView"
+        android:textAlignment="center"
         android:textColor="@android:color/transparent"
-        android:focusable="true" />
+        android:textSize="24sp" />
 
     <TextView
         android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_fragmentDetailInCzech"
+        android:id="@+id/tv_fragmentDetailMyLanguage"
         android:layout_weight="0.25"
         android:textAlignment="center"
         android:gravity="center_vertical|center_horizontal"
         android:background="#8aa2a2a2"
         android:clickable="true"
         android:textSize="24sp"
-        android:onClick="tvSwipeCzechToggleVisibility"
         android:textColor="@android:color/transparent"
         android:focusable="true" />
 

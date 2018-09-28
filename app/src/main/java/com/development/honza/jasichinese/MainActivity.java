@@ -1,23 +1,17 @@
 package com.development.honza.jasichinese;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.Toast;
 
-import com.development.honza.jasichinese.comm.DownloadFile;
-import com.development.honza.jasichinese.comm.ImportData;
-import com.development.honza.jasichinese.db.CharactersOpenHelper;
+import com.development.honza.jasichinese.db.WordsOpenHelper;
 import com.development.honza.jasichinese.db.FlashcardRead;
 import com.development.honza.jasichinese.db.Settings;
 import com.development.honza.jasichinese.db.SettingsOpenHelper;
@@ -30,6 +24,7 @@ import java.util.ArrayList;
  * status bar and navigation/system bar) with user interaction.
  */
 public class MainActivity extends AppCompatActivity {
+    private static int WORD_SAVED = 0;
     private static final boolean AUTO_HIDE = false;
     Spinner mySpinner;
     ArrayList<String> categories;
@@ -40,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         /*
-        CharactersOpenHelper db = new CharactersOpenHelper(getApplicationContext());
+        WordsOpenHelper db = new WordsOpenHelper(getApplicationContext());
         db.deleteAll();
         */
         setContentView(R.layout.activity_main);
@@ -70,15 +65,16 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // action with ID action_refresh was selected
             case R.id.action_settings:
-                /*Toast.makeText(this, "Settings selected", Toast.LENGTH_SHORT)
-                        .show();*/
                 showSettings(mContentView);
                 break;
             case R.id.action_sync :
                 syncWords(mContentView);
                 break;
             case R.id.action_search :
-                searchActivity(mContentView);
+                showWordsCategory(mContentView);
+                break;
+            case R.id.action_new :
+                addWord(mContentView);
                 break;
             default:
                 break;
@@ -113,17 +109,17 @@ public class MainActivity extends AppCompatActivity {
 
     public  void showSettings(View view) {
         Intent i = new Intent(MainActivity.this, SettingsActivity.class);
-
         startActivity(i);
     }
 
-    public void searchActivity(View view) {
-        Intent i = new Intent(MainActivity.this, SearchActivity.class);
-        startActivity(i);
+    public void addWord(View view) {
+        Intent i = new Intent(MainActivity.this, WordShowActivity.class);
+        i.putExtra("id", "0");
+        startActivityForResult(i, WORD_SAVED);
     }
 
     private ArrayList<String> getCategories() {
-        CharactersOpenHelper db = new CharactersOpenHelper(this);
+        WordsOpenHelper db = new WordsOpenHelper(this);
         return db.getCategories();
     }
 

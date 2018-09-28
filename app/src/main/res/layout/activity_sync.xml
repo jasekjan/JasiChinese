@@ -23,7 +23,7 @@
             android:text="@string/btn_do" />
 
         <ProgressBar
-            android:id="@+id/pb"
+            android:id="@+id/pb_download"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             android:indeterminateBehavior="cycle" />
 
         <TextView
-            android:id="@+id/tv"
+            android:id="@+id/tv_download"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
@@ -41,7 +41,7 @@
             android:textSize="20sp" />
 
         <ProgressBar
-            android:id="@+id/progressBar_load"
+            android:id="@+id/pb_load"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/textView_count"
+            android:id="@+id/tv_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"

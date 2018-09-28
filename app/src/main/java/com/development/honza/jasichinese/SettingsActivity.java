@@ -1,23 +1,13 @@
 package com.development.honza.jasichinese;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import com.development.honza.jasichinese.db.Characters;
-import com.development.honza.jasichinese.db.CharactersOpenHelper;
 import com.development.honza.jasichinese.db.Settings;
 import com.development.honza.jasichinese.db.SettingsOpenHelper;
-
-import java.util.ArrayList;
-import java.util.Set;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -41,7 +31,17 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        saveSettings();
+        super.onBackPressed();
+    }
+
     public void saveSettings(View view) {
+        saveSettings();
+    }
+
+    public void saveSettings() {
         SettingsOpenHelper db = new SettingsOpenHelper(this);
         Settings settings = new Settings();
         EditText path = (EditText)findViewById(R.id.et_path);

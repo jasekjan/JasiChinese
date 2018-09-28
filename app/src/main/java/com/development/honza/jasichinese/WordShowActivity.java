@@ -2,12 +2,12 @@ package com.development.honza.jasichinese;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
 
-import com.development.honza.jasichinese.db.Characters;
-import com.development.honza.jasichinese.db.CharactersOpenHelper;
+import com.development.honza.jasichinese.db.Words;
+import com.development.honza.jasichinese.db.WordsOpenHelper;
 import com.development.honza.jasichinese.db.FlashcardRead;
 
 /**
@@ -16,37 +16,37 @@ import com.development.honza.jasichinese.db.FlashcardRead;
 
 public class WordShowActivity extends Activity {
     Integer itemId;
-    Characters characters;
+    Words words;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CharactersOpenHelper db = new CharactersOpenHelper(this);
+        WordsOpenHelper db = new WordsOpenHelper(this);
         itemId = Integer.valueOf(getIntent().getStringExtra("id"));
 
         setContentView(R.layout.activity_show_word);
-        EditText id = (EditText) findViewById(R.id.editText_show_id);
-        ImageButton imageButton = (ImageButton)findViewById(R.id.imageButton_detail_play);
+        EditText id = (EditText) findViewById(R.id.et_show_id);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_detail_play);
         id.setText(String.valueOf(itemId));
 
         if (itemId > 0) {
-            characters = db.findCharactersById(itemId);
+            words = db.findCharactersById(itemId);
 
-            EditText czech = (EditText) findViewById(R.id.editText_show_czech);
-            final EditText chinese = (EditText) findViewById(R.id.editText_show_chinese);
-            EditText pinyin = (EditText) findViewById(R.id.editText_show_pinyin);
-            EditText category = (EditText) findViewById(R.id.editText_show_category);
+            EditText myLang = (EditText) findViewById(R.id.et_show_myLang);
+            final EditText myForeign = (EditText) findViewById(R.id.et_show_myForeign);
+            EditText myReading = (EditText) findViewById(R.id.et_show_myReading);
+            EditText category = (EditText) findViewById(R.id.et_show_category);
 
-            czech.setText(characters.getInCzech());
-            chinese.setText(characters.getInChinese());
-            pinyin.setText(characters.getInPinyin());
-            category.setText(characters.getCategory());
+            myLang.setText(words.getmyLang());
+            myForeign.setText(words.getmyForeign());
+            myReading.setText(words.getmyReading());
+            category.setText(words.getCategory());
 
-            imageButton.setOnClickListener(new View.OnClickListener() {
+            fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     FlashcardRead fr = new FlashcardRead();
-                    fr.testTextToSpeech(getApplicationContext(), chinese.getText().toString());
+                    fr.testTextToSpeech(getApplicationContext(), myForeign.getText().toString());
                 }
             });
         }
@@ -55,25 +55,25 @@ public class WordShowActivity extends Activity {
 
 
     public void saveWord(View view) {
-        Characters characterToSave = new Characters();
-        CharactersOpenHelper db = new CharactersOpenHelper(this);
+        Words wordsToSave = new Words();
+        WordsOpenHelper db = new WordsOpenHelper(this);
 
-        EditText czech = (EditText) findViewById(R.id.editText_show_czech);
-        EditText chinese = (EditText) findViewById(R.id.editText_show_chinese);
-        EditText pinyin = (EditText) findViewById(R.id.editText_show_pinyin);
-        EditText category = (EditText) findViewById(R.id.editText_show_category);
-        EditText id = (EditText) findViewById(R.id.editText_show_id);
+        EditText czech = (EditText) findViewById(R.id.et_show_myLang);
+        EditText chinese = (EditText) findViewById(R.id.et_show_myForeign);
+        EditText pinyin = (EditText) findViewById(R.id.et_show_myReading);
+        EditText category = (EditText) findViewById(R.id.et_show_category);
+        EditText id = (EditText) findViewById(R.id.et_show_id);
 
-        characterToSave.setInChinese(String.valueOf(chinese.getText()));
-        characterToSave.setInCzech(String.valueOf(czech.getText()));
-        characterToSave.setInPinyin(String.valueOf(pinyin.getText()));
-        characterToSave.setCategory(String.valueOf(category.getText()));
+        wordsToSave.setmyForeign(String.valueOf(chinese.getText()));
+        wordsToSave.setmyLang(String.valueOf(czech.getText()));
+        wordsToSave.setmyReading(String.valueOf(pinyin.getText()));
+        wordsToSave.setCategory(String.valueOf(category.getText()));
 
         if (Integer.valueOf(String.valueOf(id.getText())) > 0) {
-            characterToSave.setId(Integer.valueOf(String.valueOf(id.getText())));
-            db.updateCharacter(characterToSave);
+            wordsToSave.setId(Integer.valueOf(String.valueOf(id.getText())));
+            db.updateCharacter(wordsToSave);
         } else {
-            db.addCharacters(characterToSave);
+            db.addCharacters(wordsToSave);
         }
 
         if (getParent() == null) {

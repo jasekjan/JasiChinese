@@ -8,8 +8,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.development.honza.jasichinese.R;
-import com.development.honza.jasichinese.db.Characters;
-import com.development.honza.jasichinese.db.CharactersOpenHelper;
+import com.development.honza.jasichinese.db.Words;
+import com.development.honza.jasichinese.db.WordsOpenHelper;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -34,7 +34,7 @@ public class ImportData extends AsyncTask<String, Integer, Integer> {
     private TextView mTextViewResult;
     private int countInserted;
 
-    private String id, czech, pinyin, chinese, category;
+    private String id, myLang, myReading, myForeign, category;
     private String[] tokens;
 
     public ImportData(Context context, Activity activity) {
@@ -48,8 +48,8 @@ public class ImportData extends AsyncTask<String, Integer, Integer> {
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
-            CharactersOpenHelper db = new CharactersOpenHelper(context);
-            Characters findChar;
+            WordsOpenHelper db = new WordsOpenHelper(context);
+            Words findChar;
 
             while ((line = br.readLine()) != null) {
                 totalLines++;
@@ -59,27 +59,27 @@ public class ImportData extends AsyncTask<String, Integer, Integer> {
 
 
             mTextView = (TextView) activity.findViewById(R.id.tv_load);
-            mProgressBar = (ProgressBar) activity.findViewById(R.id.progressBar_load);
-            mTextViewResult = (TextView) activity.findViewById(R.id.textView_count);
+            mProgressBar = (ProgressBar) activity.findViewById(R.id.pb_load);
+            mTextViewResult = (TextView) activity.findViewById(R.id.tv_count);
 
             while ((line = br.readLine()) != null) {
                 currentLines++;
                 tokens = line.split(",");
                 id = tokens[0];
-                czech = tokens[1];
-                pinyin = tokens[2];
-                chinese = tokens[3];
+                myLang = tokens[1];
+                myReading = tokens[2];
+                myForeign = tokens[3];
                 category = tokens[4];
 
                 publishProgress( (int)(currentLines * 100) / totalLines);
 
 
                 if (!id.equals("id")) {
-                    Characters chars = new Characters(czech, pinyin, chinese, category);
-                    findChar = db.findCharactersByChinese(chinese);
-                    if (findChar == null && czech != null) {
-                        if (findChar == null || !findChar.equals(chars)) {
-                            db.addCharacters(chars);
+                    Words words = new Words(myLang, myReading, myForeign, category);
+                    findChar = db.findCharactersByChinese(myForeign);
+                    if (findChar == null && myLang != null) {
+                        if (findChar == null || !findChar.equals(words)) {
+                            db.addCharacters(words);
                             countInserted++;
                         }
                     }

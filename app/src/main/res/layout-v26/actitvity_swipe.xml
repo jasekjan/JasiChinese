@@ -9,7 +9,7 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_select_position"
+        app:layout_constraintBottom_toTopOf="@+id/btn_swipe_position"
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.v4.view.PagerTabStrip
@@ -35,7 +35,7 @@
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <Button
-        android:id="@+id/button_select_position"
+        android:id="@+id/btn_swipe_position"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="1dp"

@@ -32,8 +32,8 @@ public class DownloadFile extends AsyncTask<String, Integer, Integer> {
 
     public DownloadFile(Activity activity) {
         this.activity = activity;
-        mTextView = (TextView) activity.findViewById(R.id.tv);
-        mProgressBar = (ProgressBar) activity.findViewById(R.id.pb);
+        mTextView = (TextView) activity.findViewById(R.id.tv_download);
+        mProgressBar = (ProgressBar) activity.findViewById(R.id.pb_download);
     }
 
     @Override

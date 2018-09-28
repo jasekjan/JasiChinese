@@ -11,8 +11,8 @@ import android.widget.EditText;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.development.honza.jasichinese.db.Characters;
-import com.development.honza.jasichinese.db.CharactersOpenHelper;
+import com.development.honza.jasichinese.db.Words;
+import com.development.honza.jasichinese.db.WordsOpenHelper;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class SwipeActivity extends FragmentActivity {
     ViewPager viewPager;
-    CharactersOpenHelper db;
+    WordsOpenHelper db;
     Integer count;
     final Context context = this;
     private Button button;
@@ -32,32 +32,34 @@ public class SwipeActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final ArrayList<Characters> charactersArrayList;
-        db = new CharactersOpenHelper(this);
+        final ArrayList<Words> wordsArrayList;
+        db = new WordsOpenHelper(this);
 
         String category = getIntent().getStringExtra("category");
+        if (category.equals("vše")) { category = "all"; };
+
         String poradi = getIntent().getStringExtra("poradi");
         final String flashCard = getIntent().getStringExtra("flashcard");
-        charactersArrayList = db.getAllLCharacters(category, poradi, flashCard);
+        wordsArrayList = db.getAllLCharacters(category, poradi, flashCard);
 
         setContentView(R.layout.actitvity_swipe);
 
-        count = charactersArrayList.size();
+        count = wordsArrayList.size();
 
         FragmentStatePagerAdapter fspa = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                Characters characters;
-                characters = charactersArrayList.get(position);
+                Words words;
+                words = wordsArrayList.get(position);
                 Fragment fragment = new PageFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString("inChinese", characters.getInChinese());
-                bundle.putString("inCzech", characters.getInCzech());
-                bundle.putString("inPinyin", characters.getInPinyin());
+                bundle.putString("myForeign", words.getmyForeign());
+                bundle.putString("myLang", words.getmyLang());
+                bundle.putString("myReading", words.getmyReading());
                 bundle.putString("flashcard", flashCard);
                 fragment.setArguments(bundle);
 
-                EditText et = (EditText)findViewById(R.id.editText_set_position);
+                EditText et = (EditText)findViewById(R.id.et_swipe_position);
                 et.setText(String.valueOf(viewPager.getCurrentItem() +1));
                 et.setSelection(et.getText().length());
 
@@ -129,7 +131,7 @@ public class SwipeActivity extends FragmentActivity {
     */
 
     public void SwipeSetPosition(View view) {
-        TextView tv = (TextView)findViewById(R.id.editText_set_position);
-        viewPager.setCurrentItem(Integer.valueOf(String.valueOf(tv.getText())) -1);
+        EditText et = (EditText)findViewById(R.id.et_swipe_position);
+        viewPager.setCurrentItem(Integer.valueOf(String.valueOf(et.getText())) -1);
     }
 }

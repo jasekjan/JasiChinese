@@ -4,44 +4,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_words_list"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_height="wrap_content"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.development.honza.jasichinese.WordsListActivity"
-    android:orientation="vertical"
-    android:weightSum="1">
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton_add"
-        android:layout_width="51dp"
-        android:layout_height="52dp"
-        android:layout_gravity="bottom|end"
-        android:clickable="true"
-        android:focusable="true"
-        android:foregroundGravity="bottom"
-        android:hapticFeedbackEnabled="true"
-        android:onClick="addWord"
-        app:backgroundTint="@android:color/holo_blue_light"
-        app:elevation="10dp"
-        app:srcCompat="@android:drawable/ic_input_add" />
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.development.honza.jasichinese.WordsListActivity">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="1">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/listView_words"
+        <LinearLayout
+            android:id="@+id/linearLayout_search"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.16"
-            android:clickable="true"
-            android:drawSelectorOnTop="false"
-            android:focusable="true"
-            android:longClickable="true" />
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="top|start"
+                android:contentDescription="@string/action_search"
+                android:src="@android:drawable/ic_search_category_default" />
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/action_search"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/tv_list_category"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="end"
+                android:text="@string/textView_show_category" />
+
+            <Switch
+                android:id="@+id/switch_category"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:textOff="@string/switch_text_off"
+                android:textOn="@string/switch_text_on"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/ll_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            android:paddingTop="10dp">
+
+            <ListView
+                android:id="@+id/lv_words"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:clickable="true"
+                android:drawSelectorOnTop="false"
+                android:focusable="true"
+                android:longClickable="true"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+            </ListView>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_add"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:hapticFeedbackEnabled="true"
+                android:onClick="addWord"
+                android:src="@android:drawable/ic_input_add"
+                app:backgroundTint="@android:color/holo_orange_dark"
+                app:fabSize="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
 
     </LinearLayout>
 
