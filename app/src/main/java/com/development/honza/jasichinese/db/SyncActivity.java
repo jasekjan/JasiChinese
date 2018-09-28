@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +17,12 @@ import android.widget.Toast;
 import com.development.honza.jasichinese.R;
 import com.development.honza.jasichinese.comm.DownloadFile;
 import com.development.honza.jasichinese.comm.ImportData;
+
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Executor;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class SyncActivity extends AppCompatActivity {
     String fileUrl;
@@ -33,12 +41,23 @@ public class SyncActivity extends AppCompatActivity {
     public void loadVocabulary(View view) {
         try {
             if (isNetworkConnected()) {
+                int corePoolSize = 60;
+                int maximumPoolSize = 80;
+                int keepAliveTime = 10;
 
-                new DownloadFile(this).execute(fileUrl);
+                BlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<Runnable>(maximumPoolSize);
+                Executor threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, TimeUnit.SECONDS, workQueue);
 
-                new ImportData(this, this).execute();
+                if(Build.VERSION.SDK_INT >= 11/*HONEYCOMB*/) {
+                    new DownloadFile(this).executeOnExecutor(threadPoolExecutor, fileUrl);
 
-                Toast.makeText(getApplicationContext(), "Hotovo", Toast.LENGTH_SHORT).show();
+                    new ImportData(this, this).executeOnExecutor(threadPoolExecutor);
+                } else {
+                    new DownloadFile(this).execute(fileUrl);
+
+                    new ImportData(this, this).execute();
+                 }
+                    Toast.makeText(getApplicationContext(), "Hotovo", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getApplicationContext(), "Nejste připojeni k internetu", Toast.LENGTH_LONG).show();
             }
