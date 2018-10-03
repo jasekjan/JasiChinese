@@ -119,4 +119,7 @@
     <string name="test">Procvičovat</string>
     <string name="poradi">Pořadí</string>
     <string name="category">Kategorie</string>
+    <string name="btn_swipe_text">Znám</string>
+    <string name="btn_swipe_nok">Neznám</string>
+    <string name="btn_settings_defaul">Výchozí nastavení</string>
 </resources>

@@ -10,7 +10,7 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8">
+        android:layout_weight="6">
 
         <android.support.v4.view.PagerTabStrip
             android:id="@+id/pager_tab_strip_swipe"
@@ -22,31 +22,39 @@
             android:textColor="#aaa" />
     </android.support.v4.view.ViewPager>
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout_swipe"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:layout_gravity="center_horizontal|fill_horizontal"
+        android:layout_weight="1">
 
         <EditText
             android:id="@+id/et_swipe_position"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:ems="10"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
             android:gravity="center_vertical|center_horizontal"
             android:importantForAutofill="no"
             android:inputType="number"
-            android:text="0" />
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_swipe_position"
+            app:layout_constraintHeight_default="wrap"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_default="spread" />
 
         <Button
             android:id="@+id/btn_swipe_position"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_height="0dp"
             android:elevation="1dp"
             android:onClick="SwipeSetPosition"
-            android:text="@string/button_select_position" />
-    </LinearLayout>
+            android:text="@string/button_select_position"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_default="wrap"
+            app:layout_constraintWidth_default="wrap" />
+    </android.support.constraint.ConstraintLayout>
 
 </LinearLayout>

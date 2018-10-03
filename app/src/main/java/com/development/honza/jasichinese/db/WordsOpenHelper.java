@@ -19,6 +19,8 @@ public class WordsOpenHelper extends SQLiteOpenHelper {
     private static final String WORDS_TABLE_CREATE =
             "CREATE TABLE IF NOT EXISTS "+ WORDS_TABLE_NAME +" (id integer primary key autoincrement, myLang text not null, myReading text not null, myForeign text not null, category text not null)";
 
+    private static final String WORDS_ALTER_TABLE_1 = "ALTER TABLE "+ WORDS_TABLE_NAME + " ADD COLUMN skupina integer default 1, datum_zarazeni date";
+
     public WordsOpenHelper(Context context) {
         super(context, WORDS_TABLE_NAME, null, DATABASE_VERSION);
     }
@@ -31,7 +33,7 @@ public class WordsOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
        if (oldVersion<4) {
-            //db.execSQL(CHARACTERS_ALTER_TABLE_ADD_CATEGORY);
+            //db.execSQL(CHARACTERS_ALTER_TABLE_1);
         }
     }
 

@@ -68,7 +68,7 @@ public class SettingsActivity extends AppCompatActivity {
         EditText speed = (EditText)findViewById(R.id.et_speed);
 
         path.setText("https://docs.google.com/spreadsheets/d/e/2PACX-1vR8d-0ZEZiu17iR-iBfa5OP0BOaN2N9x3y0aT8o2x78wOT_P2ypdlX3aExqNByRsRv1aP08UpUZHBYj/pub?output=csv&ndplr=1");
-        speed.setText(String.valueOf(0.47));
+        speed.setText(String.valueOf(0.56));
     }
 
 }

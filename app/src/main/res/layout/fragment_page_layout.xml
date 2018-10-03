@@ -9,8 +9,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="143dp"
-        android:layout_weight="2">
+        android:layout_height="wrap_content"
+        android:layout_weight="3">
 
         <TextView
             android:id="@+id/tv_fragmentDetailShow"
@@ -36,7 +36,7 @@
         android:id="@+id/tv_fragmentDetailReading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:background="@android:color/darker_gray"
         android:clickable="true"
         android:focusable="true"
@@ -49,7 +49,7 @@
         android:id="@+id/tv_fragmentDetailMyLanguage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:background="#8aa2a2a2"
         android:clickable="true"
         android:focusable="true"
@@ -57,5 +57,29 @@
         android:textAlignment="center"
         android:textColor="@android:color/transparent"
         android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/btn_swipe_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/btn_swipe_text" />
+
+        <Button
+            android:id="@+id/btn_swipe_nok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_weight="1"
+            android:text="@string/btn_swipe_nok" />
+
+    </LinearLayout>
 
 </LinearLayout>

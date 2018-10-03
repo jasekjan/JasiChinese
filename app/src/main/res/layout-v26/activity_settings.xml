@@ -47,16 +47,19 @@
 
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_settings_default"
-        android:layout_width="0dp"
+    <Button
+        android:id="@+id/btn_settings_default"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:layout_marginStart="8dp"
+        android:background="@color/design_default_color_primary"
         android:clickable="true"
         android:focusable="true"
         android:onClick="setDefault"
+        android:text="@string/btn_settings_defaul"
+        android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_sync_black_24dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
