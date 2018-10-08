@@ -72,18 +72,19 @@ public class Words implements WordsInterface {
 
     @Override
     public boolean equals(Words words) {
+        boolean ret = false;
         if (words == null) {
-            return false;
+            ret = false;
         }
         if (!Words.class.isAssignableFrom(words.getClass())) {
-            return false;
+            ret = false;
         }
         final Words other = (Words) words;
         if ((this.myForeign == null) ? (other.myForeign != null) : !this.myForeign.equals(other.myForeign)) {
-            return false;
+            ret = false;
         }
 
-        return true;
+        return ret;
     }
 
     @Override
