@@ -43,7 +43,7 @@
                 android:value="com.development.honza.jasichinese.MainActivity" />
         </activity>
         <activity
-            android:name=".db.SyncActivity"
+            android:name=".SyncActivity"
             android:label="@string/title_activity_sync"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

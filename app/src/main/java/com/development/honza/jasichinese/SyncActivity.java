@@ -1,6 +1,7 @@
-package com.development.honza.jasichinese.db;
+package com.development.honza.jasichinese;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
@@ -9,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 import com.development.honza.jasichinese.R;
 import com.development.honza.jasichinese.comm.DownloadFile;
 import com.development.honza.jasichinese.comm.ImportData;
+import com.development.honza.jasichinese.db.WordsOpenHelper;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executor;
@@ -65,6 +68,30 @@ public class SyncActivity extends AppCompatActivity {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public  void deleteAll(final View view) {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        WordsOpenHelper db = new WordsOpenHelper(getApplicationContext());
+                        db.deleteAll();
+                        Toast.makeText(view.getContext(), "Všechna slovíčka byla smazána.", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        Toast.makeText(view.getContext(), "Slovíčka nebyla smazána.", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Opravdu chcete vše smazat?").setPositiveButton("Ano", dialogClickListener)
+                .setNegativeButton("NE", dialogClickListener).show();
+
     }
 
     private boolean isNetworkConnected() {

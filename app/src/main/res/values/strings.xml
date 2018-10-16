@@ -122,4 +122,5 @@
     <string name="btn_swipe_text">Znám</string>
     <string name="btn_swipe_nok">Neznám</string>
     <string name="btn_settings_defaul">Výchozí nastavení</string>
+    <string name="btn_delall">Smazat vše</string>
 </resources>

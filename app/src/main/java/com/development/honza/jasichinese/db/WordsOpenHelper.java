@@ -74,7 +74,7 @@ public class WordsOpenHelper extends SQLiteOpenHelper {
         return words;
     }
 
-    public Words findCharactersByChinese(String chinese) {
+    public ArrayList<Words> findCharactersByChinese(String chinese) {
         String query = "select id, myLang, myReading, myForeign, category from " + WORDS_TABLE_NAME + " where myForeign = '" + chinese + "'";
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -82,20 +82,57 @@ public class WordsOpenHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
 
         Words words = new Words();
+        ArrayList<Words> arrayList = new ArrayList<>();
 
         if (cursor.moveToFirst()) {
             cursor.moveToFirst();
-            words.setId(Integer.parseInt(cursor.getString(0)));
-            words.setmyLang(cursor.getString(1));
-            words.setmyReading(cursor.getString(2));
-            words.setmyForeign(cursor.getString(3));
-            words.setCategory(cursor.getString(4));
+            do {
+                words.setId(Integer.parseInt(cursor.getString(0)));
+                words.setmyLang(cursor.getString(1));
+                words.setmyReading(cursor.getString(2));
+                words.setmyForeign(cursor.getString(3));
+                words.setCategory(cursor.getString(4));
+                arrayList.add(words);
+            } while (cursor.moveToNext());
             cursor.close();
         } else {
             words = null;
         }
         db.close();
-        return words;
+        return arrayList;
+    }
+
+    public ArrayList<Words> findCharactersForInsert(String chinese, String reading) {
+        String query = "select id, myLang, myReading, myForeign, category from " + WORDS_TABLE_NAME + " where myForeign = '" + chinese + "' and myReading='" + reading + "'" ;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columnsToReturn = { "id", "myLang", "myReading", "myForeign", "category" };
+        String selection = "myForeign =? and myReading =?";
+        String[] selectionArgs = { chinese, reading }; // matched to "?" in selection
+        Cursor cursor = db.query(WORDS_TABLE_NAME, columnsToReturn, selection, selectionArgs, null, null, null);
+
+
+        //Cursor cursor = db.rawQuery(query, null);
+
+        Words words = new Words();
+        ArrayList<Words> arrayList = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            cursor.moveToFirst();
+            do {
+                words.setId(Integer.parseInt(cursor.getString(0)));
+                words.setmyLang(cursor.getString(1));
+                words.setmyReading(cursor.getString(2));
+                words.setmyForeign(cursor.getString(3));
+                words.setCategory(cursor.getString(4));
+                arrayList.add(words);
+            } while (cursor.moveToNext());
+            cursor.close();
+        } else {
+            words = null;
+        }
+        db.close();
+        return arrayList;
     }
 
     public boolean deleteRecord(long id) {

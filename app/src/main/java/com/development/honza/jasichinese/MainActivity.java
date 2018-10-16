@@ -15,7 +15,6 @@ import com.development.honza.jasichinese.db.WordsOpenHelper;
 import com.development.honza.jasichinese.db.FlashcardRead;
 import com.development.honza.jasichinese.db.Settings;
 import com.development.honza.jasichinese.db.SettingsOpenHelper;
-import com.development.honza.jasichinese.db.SyncActivity;
 
 import java.util.ArrayList;
 

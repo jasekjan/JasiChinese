@@ -76,11 +76,13 @@ public class Words implements WordsInterface {
         if (words == null) {
             ret = false;
         }
-        if (!Words.class.isAssignableFrom(words.getClass())) {
+        if (!(words instanceof Words)) {
             ret = false;
         }
-        final Words other = (Words) words;
-        if ((this.myForeign == null) ? (other.myForeign != null) : !this.myForeign.equals(other.myForeign)) {
+
+        if ((this.myForeign == null) ? (words.myForeign == null) : this.hashCode() == words.hashCode()) {
+            ret = true;
+        } else {
             ret = false;
         }
 

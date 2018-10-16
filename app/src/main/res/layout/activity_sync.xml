@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <Button
@@ -64,6 +64,17 @@
             android:gravity="center_horizontal"
             android:paddingTop="20sp"
             android:textSize="20sp" />
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_delall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|fill_vertical|end"
+        android:layout_marginEnd="30dp"
+        android:onClick="deleteAll"
+        android:paddingTop="10dp"
+        android:text="@string/btn_delall" />
 
 </LinearLayout>
