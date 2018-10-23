@@ -76,11 +76,11 @@ public class WordShowActivity extends Activity {
             db.addCharacters(wordsToSave);
         }
 
-        if (getParent() == null) {
+        //if (getParent() == null) {
             setResult(Activity.RESULT_OK, getIntent());
-        } else {
-            getParent().setResult(Activity.RESULT_OK, getIntent());
-        }
+        //} else {
+        //    getParent().setResult(Activity.RESULT_OK, getIntent());
+        //}
         finish();
     }
 

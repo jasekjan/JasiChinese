@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra("poradi", spPoradi.getSelectedItem().toString());
         i.putExtra("category", sp.getSelectedItem().toString());
         startActivity(i);
+        populateSpinner();
     }
 
     public void showSwipeActivityCategory(View view) {
@@ -115,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(MainActivity.this, WordShowActivity.class);
         i.putExtra("id", "0");
         startActivityForResult(i, WORD_SAVED);
+        populateSpinner();
     }
 
     private ArrayList<String> getCategories() {
@@ -125,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
     private void populateSpinner() {
         categories = getCategories();
         Spinner spinner = (Spinner) findViewById(R.id.spinner_category);
+
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.spinner_item, categories);
         adapter.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(adapter);
@@ -159,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             i.putExtra("fileurl", settings.getPath());
             startActivity(i);
+            populateSpinner();
         }
-        populateSpinner();
     }
 }

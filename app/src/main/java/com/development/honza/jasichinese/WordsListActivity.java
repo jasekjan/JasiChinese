@@ -89,7 +89,8 @@ public class WordsListActivity extends Activity {
                 HashMap o = (HashMap) listView.getItemAtPosition(i);
                 Intent intent = new Intent(view.getContext(), WordShowActivity.class);
                 intent.putExtra("id", String.valueOf(o.get("id")));
-                startActivityForResult(intent, WORD_ADDED);
+                //startActivityForResult(intent, WORD_ADDED);
+                startActivity(intent);
             }
         });
 
@@ -212,7 +213,8 @@ public class WordsListActivity extends Activity {
     public void addWord(View view) {
         Intent i = new Intent(view.getContext(), WordShowActivity.class);
         i.putExtra("id", "0");
-        startActivityForResult(i, WORD_SAVED);
+        //startActivityForResult(i, WORD_SAVED);
+        startActivity(i);
     }
 
 
